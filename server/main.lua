@@ -43,12 +43,14 @@ CreateThread(function ()
 		Wait(10000)
 		for _, id in ipairs(GetPlayers()) do
 			local xPlayer = ESX.GetPlayerFromId(id)
-			local xName = xPlayer.getName()
-			for _, blacklistedName in pairs(Config.BlacklistedWords) do
-				local name = xName:lower()
-				local blacklist = blacklistedName:lower()
-				if name:find(blacklist) then
-					Config.CustomBanFunction(xPlayer.source, "[Blacklisted Name System] : You have been kicked for a blacklisted ESX Identity Name. Found String: " ..blacklist.. " in Name: " ..name)
+			if xPlayer ~= nil then
+				local xName = xPlayer.getName()
+				for _, blacklistedName in pairs(Config.BlacklistedWords) do
+					local name = xName:lower()
+					local blacklist = blacklistedName:lower()
+					if name:find(blacklist) then
+						Config.CustomBanFunction(xPlayer.source, "[Blacklisted Name System] : You have been kicked for a blacklisted ESX Identity Name. Found String: " ..blacklist.. " in Name: " ..name)
+					end
 				end
 			end
 		end
